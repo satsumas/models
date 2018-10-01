@@ -55,7 +55,7 @@ def neumf_model_fn(features, labels, mode, params):
   logits = construct_model(users=users, items=items, params=params)
 
   # Softmax with the first column of ones is equivalent to sigmoid.
-  softmax_logits = tf.concat([tf.ones(logits.shape, dtype=logits.dtype),
+  softmax_logits = tf.concat([tf.zeros(logits.shape, dtype=logits.dtype),
                               logits], axis=1)
 
   if mode == tf.estimator.ModeKeys.PREDICT:
@@ -247,7 +247,7 @@ def compute_eval_loss_and_metrics(logits, softmax_logits, duplicate_mask,
       for a user are grouped, and the first element of the group is the true
       element.
 
-    softmax_logits: The same tensor, but with ones left-appended.
+    softmax_logits: The same tensor, but with zeros left-appended.
 
     duplicate_mask: A vector with the same shape as logits, with a value of 1
       if the item corresponding to the logit at that position has already
