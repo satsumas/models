@@ -83,6 +83,7 @@ def neumf_model_fn(features, labels, mode, params):
         labels=labels,
         logits=softmax_logits
     )
+    tf.identity(loss, name="cross_entropy")
 
     global_step = tf.train.get_global_step()
     tvars = tf.trainable_variables()

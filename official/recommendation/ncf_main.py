@@ -171,7 +171,8 @@ def run_ncf(_):
   train_hooks = hooks_helper.get_train_hooks(
       FLAGS.hooks,
       model_dir=FLAGS.model_dir,
-      batch_size=FLAGS.batch_size  # for ExamplesPerSecondHook
+      batch_size=FLAGS.batch_size,  # for ExamplesPerSecondHook
+      tensors_to_log={"cross_entropy": "cross_entropy"}
   )
   run_params = {
       "batch_size": FLAGS.batch_size,
