@@ -54,7 +54,7 @@ def neumf_model_fn(features, labels, mode, params):
 
   logits = construct_model(users=users, items=items, params=params)
 
-  # Softmax with the first column of ones is equivalent to sigmoid.
+  # Softmax with the first column of zeros is equivalent to sigmoid.
   softmax_logits = tf.concat([tf.zeros(logits.shape, dtype=logits.dtype),
                               logits], axis=1)
 
